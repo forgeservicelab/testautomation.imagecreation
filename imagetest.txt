@@ -1,0 +1,41 @@
+*** Settings ***
+Suite Setup    Set CLI ENV ready
+Suite Teardown    Close All Connections
+Resource    ./common/assets/secrets.txt
+Resource    ./common/assets/resource.txt
+Resource    local_resource.txt
+Test Template    Flavor test
+#Library    NovaClient
+Library    SSHLibrary
+Library    OperatingSystem
+
+*** Variables ***
+${USERNAME}     akoskine
+${ID_RSA}    /home/user/.ssh/id_rsa
+#${PASSWORD}    ${VALID_PASSWORD}
+#${HOST}     support-test.forgeservicelab.fi
+#${HOST}      193.166.25.175
+
+*** Test Cases ***    IP                                 Flavor Name    Id    Vcpus   Root Disk    Ephemeral Disk    Total Disk    RAM
+flavor m1.medium      support-test.forgeservicelab.fi    m1.medium      2     2       20           0                 20            3.9G
+
+
+
+*** Keywords ***
+#Open Connection And Log In
+Flavor test
+    [Arguments]    ${ip}    ${name}    ${id}    ${vcpus}    ${disk}    ${ephemeral}    ${disk_total}    ${ram}
+    Open Connection    ${ip}
+    ${resp}    Login With Public Key    ${username}    ${ID_RSA}
+    Should Contain    ${resp}    Last login
+    Log    CPU(s)
+    ${output}    Execute Command    lscpu | grep CPU
+    Should Contain     ${output}    CPU(s): ${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${vcpus}
+    Log    Memory
+    ${output}    Execute Command    free -mh | grep Mem
+    Should Contain     ${output}    Mem:${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${ram}
+    Log    DISK
+    ${output}    Execute Command    df -h | grep rootfs
+    Should Contain     ${output}    rootfs${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${disk_total}
+
+
