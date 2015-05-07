@@ -13,11 +13,11 @@ Library    OperatingSystem
 ${USERNAME}     akoskine
 ${ID_RSA}    /home/user/.ssh/id_rsa
 #${PASSWORD}    ${VALID_PASSWORD}
-#${HOST}     support-test.forgeservicelab.fi
+${HOST}     support-test.forgeservicelab.fi
 #${HOST}      193.166.25.175
 
 *** Test Cases ***    IP                                 Flavor Name    Id    Vcpus   Root Disk    Ephemeral Disk    Total Disk    RAM
-flavor m1.medium      support-test.forgeservicelab.fi    m1.medium      2     2       20           0                 20            3.9G
+flavor m1.medium      ${HOST}                            m1.medium      2     2       20           0                 20            3.9G
 
 
 
