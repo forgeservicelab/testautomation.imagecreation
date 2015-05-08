@@ -1,0 +1,29 @@
+*** Settings ***
+Suite Setup    Set CLI ENV ready
+Suite Teardown    Close All Connections
+Resource    ./common/assets/secrets.txt
+Resource    ./common/assets/resource.txt
+Resource    local_resource.txt
+#Library    NovaClient
+Library    SSHLibrary
+Library    OperatingSystem
+
+*** Variables ***
+${USERNAME}     debian
+${ID_RSA}    /home/user/.ssh/id_rsa
+#${PASSWORD}    ${VALID_PASSWORD}
+#${HOST}     support-test.forgeservicelab.fi
+${HOST}      193.166.25.155
+
+*** Test Cases ***
+Sudo su
+    Open Connection    ${HOST}
+    ${resp}    Login With Public Key    ${username}    ${ID_RSA}
+    Should Contain    ${resp}    Last login
+    ${output}    Execute Command    echo test
+    Should Contain     ${output}    test
+    Write   sudo su
+    ${output}    Write    whoami
+    ${output}    Write    whoami
+#    ${output}    Execute Command    whoami
+    Should Contain     ${output}    root
