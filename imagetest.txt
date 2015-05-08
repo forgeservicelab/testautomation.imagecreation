@@ -74,13 +74,13 @@ test_m1_large
     Should Contain    ${resp}    Last login
     Log    CPU(s)
     ${output}    Execute Command    lscpu | grep CPU
-    Should Contain     ${output}    CPU(s): ${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}2
+    Should Contain     ${output}    CPU(s): ${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}4
     Log    Memory
     ${output}    Execute Command    free -mh | grep Mem
-    Should Contain     ${output}    Mem:${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}1.9G
+    Should Contain     ${output}    Mem:${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}7.8G
     Log    DISK
     ${output}    Execute Command    df -h | grep rootfs
-    Should Contain     ${output}    rootfs${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}9.9G
+    Should Contain     ${output}    rootfs${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}40G
     Log    Reached this point despite of error
 test_m1_xlarge
     Open Connection    ${HOST}
@@ -88,12 +88,12 @@ test_m1_xlarge
     Should Contain    ${resp}    Last login
     Log    CPU(s)
     ${output}    Execute Command    lscpu | grep CPU
-    Should Contain     ${output}    CPU(s): ${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}2
+    Should Contain     ${output}    CPU(s): ${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}8
     Log    Memory
     ${output}    Execute Command    free -mh | grep Mem
-    Should Contain     ${output}    Mem:${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}1.9G
+    Should Contain     ${output}    Mem:${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}15G
     Log    DISK
     ${output}    Execute Command    df -h | grep rootfs
-    Should Contain     ${output}    rootfs${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}9.9G
+    Should Contain     ${output}    rootfs${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}79G
     Log    Reached this point despite of error
 
