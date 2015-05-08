@@ -4,7 +4,6 @@ Suite Teardown    Close All Connections
 Resource    ./common/assets/secrets.txt
 Resource    ./common/assets/resource.txt
 Resource    local_resource.txt
-Test Template    Flavor test
 #Library    NovaClient
 Library    SSHLibrary
 Library    OperatingSystem
@@ -15,27 +14,86 @@ ${ID_RSA}    /home/user/.ssh/id_rsa
 #${PASSWORD}    ${VALID_PASSWORD}
 ${HOST}     support-test.forgeservicelab.fi
 #${HOST}      193.166.25.175
+${FLAVOR}    m1.tiny 
 
-*** Test Cases ***    IP                                 Flavor Name    Id    Vcpus   Root Disk    Ephemeral Disk    Total Disk    RAM
-flavor m1.medium      ${HOST}                            m1.medium      2     2       20           0                 20            3.9G
+*** Test Cases ***
 
-
+Run-Keyword-If
+    Run Keyword If    '${FLAVOR}' == 'm1.tiny'     test_m1_tiny
+    Run Keyword If    '${FLAVOR}' == 'm1.small'     test_m1_small
+    Run Keyword If    '${FLAVOR}' == 'm1.medium'     test_m1_medium
+    Run Keyword If    '${FLAVOR}' == 'm1.large'     test_m1_large
+    Run Keyword If    '${FLAVOR}' == 'm1.xlarge'     test_m1_xlarge
 
 *** Keywords ***
-#Open Connection And Log In
-Flavor test
-    [Arguments]    ${ip}    ${name}    ${id}    ${vcpus}    ${disk}    ${ephemeral}    ${disk_total}    ${ram}
-    Open Connection    ${ip}
+test_m1_tiny
+    Open Connection    ${HOST}
     ${resp}    Login With Public Key    ${username}    ${ID_RSA}
     Should Contain    ${resp}    Last login
     Log    CPU(s)
     ${output}    Execute Command    lscpu | grep CPU
-    Should Contain     ${output}    CPU(s): ${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${vcpus}
+    Should Contain     ${output}    CPU(s): ${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}1
     Log    Memory
     ${output}    Execute Command    free -mh | grep Mem
-    Should Contain     ${output}    Mem:${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${ram}
+    Should Contain     ${output}    Mem:${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}1.9G
     Log    DISK
     ${output}    Execute Command    df -h | grep rootfs
-    Should Contain     ${output}    rootfs${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${disk_total}
-
+    Should Contain     ${output}    rootfs${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}9.9G
+    Log    Reached this point despite of error
+test_m1_small
+    Open Connection    ${HOST}
+    ${resp}    Login With Public Key    ${username}    ${ID_RSA}
+    Should Contain    ${resp}    Last login
+    Log    CPU(s)
+    ${output}    Execute Command    lscpu | grep CPU
+    Should Contain     ${output}    CPU(s): ${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}2
+    Log    Memory
+    ${output}    Execute Command    free -mh | grep Mem
+    Should Contain     ${output}    Mem:${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}1.9G
+    Log    DISK
+    ${output}    Execute Command    df -h | grep rootfs
+    Should Contain     ${output}    rootfs${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}9.9G
+    Log    Reached this point despite of error
+test_m1_medium
+    Open Connection    ${HOST}
+    ${resp}    Login With Public Key    ${username}    ${ID_RSA}
+    Should Contain    ${resp}    Last login
+    Log    CPU(s)
+    ${output}    Execute Command    lscpu | grep CPU
+    Should Contain     ${output}    CPU(s): ${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}2
+    Log    Memory
+    ${output}    Execute Command    free -mh | grep Mem
+    Should Contain     ${output}    Mem:${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}1.9G
+    Log    DISK
+    ${output}    Execute Command    df -h | grep rootfs
+    Should Contain     ${output}    rootfs${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}9.9G
+    Log    Reached this point despite of error
+test_m1_large
+    Open Connection    ${HOST}
+    ${resp}    Login With Public Key    ${username}    ${ID_RSA}
+    Should Contain    ${resp}    Last login
+    Log    CPU(s)
+    ${output}    Execute Command    lscpu | grep CPU
+    Should Contain     ${output}    CPU(s): ${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}2
+    Log    Memory
+    ${output}    Execute Command    free -mh | grep Mem
+    Should Contain     ${output}    Mem:${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}1.9G
+    Log    DISK
+    ${output}    Execute Command    df -h | grep rootfs
+    Should Contain     ${output}    rootfs${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}9.9G
+    Log    Reached this point despite of error
+test_m1_xlarge
+    Open Connection    ${HOST}
+    ${resp}    Login With Public Key    ${username}    ${ID_RSA}
+    Should Contain    ${resp}    Last login
+    Log    CPU(s)
+    ${output}    Execute Command    lscpu | grep CPU
+    Should Contain     ${output}    CPU(s): ${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}2
+    Log    Memory
+    ${output}    Execute Command    free -mh | grep Mem
+    Should Contain     ${output}    Mem:${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}1.9G
+    Log    DISK
+    ${output}    Execute Command    df -h | grep rootfs
+    Should Contain     ${output}    rootfs${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}9.9G
+    Log    Reached this point despite of error
 
