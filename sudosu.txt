@@ -21,8 +21,8 @@ Sudo su
     Open Connection    ${HOST}
     ${resp}    Login With Public Key    ${username}    ${ID_RSA}    ${KEYRING_PASS}
 #    Should Contain    ${resp}    Last login
-    ${output}    Execute Command    echo test
-    Should Contain     ${output}    test
+#    ${output}    Execute Command    echo test
+#    Should Contain     ${output}    test
     Write   sudo su
     ${output}    Write    whoami
     ${output}    Write    whoami
