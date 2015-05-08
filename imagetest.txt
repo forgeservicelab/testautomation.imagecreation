@@ -32,69 +32,69 @@ test_m1_tiny
     ${resp}    Login With Public Key    ${username}    ${ID_RSA}    ${KEYRING_PASS}
     Should Contain    ${resp}    Last login
     Log    CPU(s)
-    ${output}    Execute Command    lscpu | grep CPU
-    Should Contain     ${output}    CPU(s): ${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}1
+    ${output}    Execute Command    lscpu | grep 'CPU(s):' | grep -v NUMA
+    Should Match Regexp     ${output}    ^CPU\\(s\\):\\s+1.*$
     Log    Memory
     ${output}    Execute Command    free -mh | grep Mem
-    Should Contain     ${output}    Mem:${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}1.0G
+    Should Match Regexp     ${output}    ^Mem:\\s+(?:1\\.0G|9\\d{2}M).*$
     Log    DISK
-    ${output}    Execute Command    df -h | grep rootfs
-    Should Contain     ${output}    rootfs${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}9.9G
+    ${output}    Execute Command    df -h | grep /dev/.da1
+    Should Match Regexp     ${output}    ^/dev/.da1\\s+9.\\dG.*$
     Log    Reached this point despite of error
 test_m1_small
     Open Connection    ${HOST}
     ${resp}    Login With Public Key    ${username}    ${ID_RSA}
     Should Contain    ${resp}    Last login
     Log    CPU(s)
-    ${output}    Execute Command    lscpu | grep CPU
-    Should Contain     ${output}    CPU(s): ${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}1
+    ${output}    Execute Command    lscpu | grep 'CPU(s):' | grep -v NUMA
+    Should Match Regexp     ${output}    ^CPU\\(s\\):\\s+1.*$
     Log    Memory
     ${output}    Execute Command    free -mh | grep Mem
-    Should Contain     ${output}    Mem:${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}2.0G
+    Should Match Regexp     ${output}    ^Mem:\\s+2\\.0G.*$
     Log    DISK
-    ${output}    Execute Command    df -h | grep rootfs
-    Should Contain     ${output}    rootfs${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}9.9G
+    ${output}    Execute Command    df -h | grep /dev/.da1
+    Should Match Regexp     ${output}    ^/dev/.da1\\s+9.\\dG.*$
     Log    Reached this point despite of error
 test_m1_medium
     Open Connection    ${HOST}
     ${resp}    Login With Public Key    ${username}    ${ID_RSA}
     Should Contain    ${resp}    Last login
     Log    CPU(s)
-    ${output}    Execute Command    lscpu | grep CPU
-    Should Contain     ${output}    CPU(s): ${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}2
+    ${output}    Execute Command    lscpu | grep 'CPU(s):' | grep -v NUMA
+    Should Match Regexp     ${output}    ^CPU\\(s\\):\\s+2.*$
     Log    Memory
     ${output}    Execute Command    free -mh | grep Mem
-    Should Contain     ${output}    Mem:${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}3.9G
+    Should Match Regexp     ${output}    ^Mem:\\s+3\\.9G.*$
     Log    DISK
-    ${output}    Execute Command    df -h | grep rootfs
-    Should Contain     ${output}    rootfs${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}20G
+    ${output}    Execute Command    df -h | grep /dev/.da1
+    Should Match Regexp     ${output}    ^/dev/.da1\\s+20G.*$
     Log    Reached this point despite of error
 test_m1_large
     Open Connection    ${HOST}
     ${resp}    Login With Public Key    ${username}    ${ID_RSA}
     Should Contain    ${resp}    Last login
     Log    CPU(s)
-    ${output}    Execute Command    lscpu | grep CPU
-    Should Contain     ${output}    CPU(s): ${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}4
+    ${output}    Execute Command    lscpu | grep 'CPU(s):' | grep -v NUMA
+    Should Match Regexp     ${output}    ^CPU\\(s\\):\\s+4.*$
     Log    Memory
     ${output}    Execute Command    free -mh | grep Mem
-    Should Contain     ${output}    Mem:${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}7.8G
+    Should Match Regexp     ${output}    ^Mem:\\s+7\\.8G.*$
     Log    DISK
-    ${output}    Execute Command    df -h | grep rootfs
-    Should Contain     ${output}    rootfs${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}40G
+    ${output}    Execute Command    df -h | grep /dev/.da1
+    Should Match Regexp     ${output}    ^/dev/.da1\\s+40G.*$
     Log    Reached this point despite of error
 test_m1_xlarge
     Open Connection    ${HOST}
     ${resp}    Login With Public Key    ${username}    ${ID_RSA}
     Should Contain    ${resp}    Last login
     Log    CPU(s)
-    ${output}    Execute Command    lscpu | grep CPU
-    Should Contain     ${output}    CPU(s): ${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}8
+    ${output}    Execute Command    lscpu | grep 'CPU(s):' | grep -v NUMA
+    Should Match Regexp     ${output}    ^CPU\\(s\\):\\s+8.*$
     Log    Memory
     ${output}    Execute Command    free -mh | grep Mem
-    Should Contain     ${output}    Mem:${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}15G
+    Should Match Regexp     ${output}    ^Mem:\\s+15G.*$
     Log    DISK
-    ${output}    Execute Command    df -h | grep rootfs
-    Should Contain     ${output}    rootfs${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}79G
+    ${output}    Execute Command    df -h | grep /dev/.da1
+    Should Match Regexp     ${output}    ^/dev/.da1\\s+79G.*$
     Log    Reached this point despite of error
 

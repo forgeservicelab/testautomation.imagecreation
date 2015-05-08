@@ -23,8 +23,8 @@ Sudo su
 #    Should Contain    ${resp}    Last login
 #    ${output}    Execute Command    echo test
 #    Should Contain     ${output}    test
-    Write   sudo su
-    ${output}    Write    whoami
-    ${output}    Write    whoami
-#    ${output}    Execute Command    whoami
+    #Write   sudo su
+    #Write Bare   echo \n
+    #ddSet Client Configuration	prompt=$
+    ${output}    Execute Command    echo $(sudo whoami)
     Should Contain     ${output}    root
