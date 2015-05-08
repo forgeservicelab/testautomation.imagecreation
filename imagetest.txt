@@ -9,11 +9,11 @@ Library    SSHLibrary
 Library    OperatingSystem
 
 *** Variables ***
-${USERNAME}     akoskine
+${USERNAME}     debian
 ${ID_RSA}    /home/user/.ssh/id_rsa
 #${PASSWORD}    ${VALID_PASSWORD}
-${HOST}     support-test.forgeservicelab.fi
-#${HOST}      193.166.25.175
+#${HOST}     support-test.forgeservicelab.fi
+${HOST}      193.166.25.155
 ${FLAVOR}    m1.tiny 
 
 *** Test Cases ***
@@ -35,10 +35,10 @@ test_m1_tiny
     Should Contain     ${output}    CPU(s): ${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}1
     Log    Memory
     ${output}    Execute Command    free -mh | grep Mem
-    Should Contain     ${output}    Mem:${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}1.9G
+    Should Contain     ${output}    Mem:${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}1.0G
     Log    DISK
     ${output}    Execute Command    df -h | grep rootfs
-    Should Contain     ${output}    rootfs${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}9.9G
+    Should Contain     ${output}    rootfs${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}${SPACE}9.9G
     Log    Reached this point despite of error
 test_m1_small
     Open Connection    ${HOST}
