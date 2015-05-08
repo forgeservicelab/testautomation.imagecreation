@@ -11,6 +11,7 @@ Library    OperatingSystem
 *** Variables ***
 ${USERNAME}     debian
 ${ID_RSA}    /home/user/.ssh/id_rsa
+${KEYRING_PASS}    ${EMPTY}
 #${PASSWORD}    ${VALID_PASSWORD}
 #${HOST}     support-test.forgeservicelab.fi
 ${HOST}      193.166.25.155
@@ -28,7 +29,7 @@ Run-Keyword-If
 *** Keywords ***
 test_m1_tiny
     Open Connection    ${HOST}
-    ${resp}    Login With Public Key    ${username}    ${ID_RSA}
+    ${resp}    Login With Public Key    ${username}    ${ID_RSA}    ${KEYRING_PASS}
     Should Contain    ${resp}    Last login
     Log    CPU(s)
     ${output}    Execute Command    lscpu | grep CPU
