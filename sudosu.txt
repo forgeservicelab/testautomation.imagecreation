@@ -11,6 +11,7 @@ Library    OperatingSystem
 *** Variables ***
 ${USERNAME}     debian
 ${ID_RSA}    /home/user/.ssh/id_rsa
+${KEYRING_PASS}    ${EMPTY}
 #${PASSWORD}    ${VALID_PASSWORD}
 #${HOST}     support-test.forgeservicelab.fi
 ${HOST}      193.166.25.155
@@ -18,8 +19,8 @@ ${HOST}      193.166.25.155
 *** Test Cases ***
 Sudo su
     Open Connection    ${HOST}
-    ${resp}    Login With Public Key    ${username}    ${ID_RSA}
-    Should Contain    ${resp}    Last login
+    ${resp}    Login With Public Key    ${username}    ${ID_RSA}    ${KEYRING_PASS}
+#    Should Contain    ${resp}    Last login
     ${output}    Execute Command    echo test
     Should Contain     ${output}    test
     Write   sudo su
