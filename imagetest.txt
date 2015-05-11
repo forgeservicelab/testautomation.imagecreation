@@ -29,8 +29,7 @@ Run-Keyword-If
 *** Keywords ***
 test_m1_tiny
     Open Connection    ${HOST}
-    ${resp}    Login With Public Key    ${username}    ${ID_RSA}    ${KEYRING_PASS}
-    Should Contain    ${resp}    Last login
+    Login With Public Key    ${username}    ${ID_RSA}    ${KEYRING_PASS}
     Log    CPU(s)
     ${output}    Execute Command    lscpu | grep 'CPU(s):' | grep -v NUMA
     Should Match Regexp     ${output}    ^CPU\\(s\\):\\s+1.*$
@@ -43,8 +42,7 @@ test_m1_tiny
     Log    Reached this point despite of error
 test_m1_small
     Open Connection    ${HOST}
-    ${resp}    Login With Public Key    ${username}    ${ID_RSA}
-    Should Contain    ${resp}    Last login
+    Login With Public Key    ${username}    ${ID_RSA}    ${KEYRING_PASS}
     Log    CPU(s)
     ${output}    Execute Command    lscpu | grep 'CPU(s):' | grep -v NUMA
     Should Match Regexp     ${output}    ^CPU\\(s\\):\\s+1.*$
@@ -57,8 +55,7 @@ test_m1_small
     Log    Reached this point despite of error
 test_m1_medium
     Open Connection    ${HOST}
-    ${resp}    Login With Public Key    ${username}    ${ID_RSA}
-    Should Contain    ${resp}    Last login
+    Login With Public Key    ${username}    ${ID_RSA}    ${KEYRING_PASS}
     Log    CPU(s)
     ${output}    Execute Command    lscpu | grep 'CPU(s):' | grep -v NUMA
     Should Match Regexp     ${output}    ^CPU\\(s\\):\\s+2.*$
@@ -71,8 +68,7 @@ test_m1_medium
     Log    Reached this point despite of error
 test_m1_large
     Open Connection    ${HOST}
-    ${resp}    Login With Public Key    ${username}    ${ID_RSA}
-    Should Contain    ${resp}    Last login
+    Login With Public Key    ${username}    ${ID_RSA}    ${KEYRING_PASS}
     Log    CPU(s)
     ${output}    Execute Command    lscpu | grep 'CPU(s):' | grep -v NUMA
     Should Match Regexp     ${output}    ^CPU\\(s\\):\\s+4.*$
@@ -85,8 +81,7 @@ test_m1_large
     Log    Reached this point despite of error
 test_m1_xlarge
     Open Connection    ${HOST}
-    ${resp}    Login With Public Key    ${username}    ${ID_RSA}
-    Should Contain    ${resp}    Last login
+    Login With Public Key    ${username}    ${ID_RSA}    ${KEYRING_PASS}
     Log    CPU(s)
     ${output}    Execute Command    lscpu | grep 'CPU(s):' | grep -v NUMA
     Should Match Regexp     ${output}    ^CPU\\(s\\):\\s+8.*$
