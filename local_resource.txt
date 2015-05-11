@@ -13,7 +13,7 @@ Login to OpenStack
     Set Environment Variable    OS_TENANT_NAME    ${OS_TENANT_NAME}
     Set Environment Variable    OS_TENANT_ID    ${OS_TENANT_ID}
     Set Environment Variable    OS_AUTH_URL    ${OS_AUTH_URL}
-    Open Browser    ${OPENSTACK_URL}    ${BROWSER}
+    Open Browser    ${OPENSTACK_URL}    ${BROWSER}         remote_url=http://ci.forgeservicelab.fi:4444/wd/hub 
     Input Text    id=id_username    ${USER}
     Set Log Level    NONE
     Input Text    id=id_password    ${PASSWORD}
@@ -29,7 +29,7 @@ Login to OpenStack And Start Creating Instances
     Set Environment Variable    OS_TENANT_NAME    ${OS_TENANT_NAME}
     Set Environment Variable    OS_TENANT_ID    ${OS_TENANT_ID}
     Set Environment Variable    OS_AUTH_URL    ${OS_AUTH_URL}
-    Open Browser    ${OPENSTACK_URL}    ${BROWSER}
+    Open Browser    ${OPENSTACK_URL}    ${BROWSER}         remote_url=http://ci.forgeservicelab.fi:4444/wd/hub 
     Input Text    id=id_username    ${USER}
     Set Log Level    NONE
     Input Text    id=id_password    ${PASSWORD}

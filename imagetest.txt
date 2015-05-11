@@ -14,8 +14,10 @@ ${ID_RSA}    /home/user/.ssh/id_rsa
 ${KEYRING_PASS}    ${EMPTY}
 #${PASSWORD}    ${VALID_PASSWORD}
 #${HOST}     support-test.forgeservicelab.fi
-${HOST}      193.166.25.155
+${HOST}      193.166.25.66
 ${FLAVOR}    m1.tiny 
+${TENANT}    Digile.Devel
+${IMAGE_NAME}    image_name
 
 *** Test Cases ***
 
@@ -40,6 +42,19 @@ test_m1_tiny
     ${output}    Execute Command    df -h | grep /dev/.da1
     Should Match Regexp     ${output}    ^/dev/.da1\\s+9.\\dG.*$
     Log    Reached this point despite of error
+#   LOGIN TO HORIZON AND CHECK LOGS
+    Login to OpenStack
+    Wait Until Page Contains   Instances
+    Click Element    css=h3
+    Click Link    ${TENANT}
+    Click Link    Instances
+    Click Link    ${IMAGE_NAME}
+    Click Link    Log
+    Wait Until Page Contains    Instance Console Log
+    ${LOGI}    Get Text     css=pre.logs
+    ${LEN}    Get Length    ${LOGI}
+    ${VALI}    Set Variable If     ${LEN} > 100    OK    NOK
+    Should Be Equal    OK    ${VALI}    Console Log not present
 test_m1_small
     Open Connection    ${HOST}
     Login With Public Key    ${username}    ${ID_RSA}    ${KEYRING_PASS}
@@ -53,6 +68,19 @@ test_m1_small
     ${output}    Execute Command    df -h | grep /dev/.da1
     Should Match Regexp     ${output}    ^/dev/.da1\\s+9.\\dG.*$
     Log    Reached this point despite of error
+#   LOGIN TO HORIZON AND CHECK LOGS
+    Login to OpenStack
+    Wait Until Page Contains   Instances
+    Click Element    css=h3
+    Click Link    ${TENANT}
+    Click Link    Instances
+    Click Link    ${IMAGE_NAME}
+    Click Link    Log
+    Wait Until Page Contains    Instance Console Log
+    ${LOGI}    Get Text     css=pre.logs
+    ${LEN}    Get Length    ${LOGI}
+    ${VALI}    Set Variable If     ${LEN} > 100    OK    NOK
+    Should Be Equal    OK    ${VALI}    Console Log not present
 test_m1_medium
     Open Connection    ${HOST}
     Login With Public Key    ${username}    ${ID_RSA}    ${KEYRING_PASS}
@@ -66,6 +94,19 @@ test_m1_medium
     ${output}    Execute Command    df -h | grep /dev/.da1
     Should Match Regexp     ${output}    ^/dev/.da1\\s+20G.*$
     Log    Reached this point despite of error
+#   LOGIN TO HORIZON AND CHECK LOGS
+    Login to OpenStack
+    Wait Until Page Contains   Instances
+    Click Element    css=h3
+    Click Link    ${TENANT}
+    Click Link    Instances
+    Click Link    ${IMAGE_NAME}
+    Click Link    Log
+    Wait Until Page Contains    Instance Console Log
+    ${LOGI}    Get Text     css=pre.logs
+    ${LEN}    Get Length    ${LOGI}
+    ${VALI}    Set Variable If     ${LEN} > 100    OK    NOK
+    Should Be Equal    OK    ${VALI}    Console Log not present
 test_m1_large
     Open Connection    ${HOST}
     Login With Public Key    ${username}    ${ID_RSA}    ${KEYRING_PASS}
@@ -79,6 +120,19 @@ test_m1_large
     ${output}    Execute Command    df -h | grep /dev/.da1
     Should Match Regexp     ${output}    ^/dev/.da1\\s+40G.*$
     Log    Reached this point despite of error
+#   LOGIN TO HORIZON AND CHECK LOGS
+    Login to OpenStack
+    Wait Until Page Contains   Instances
+    Click Element    css=h3
+    Click Link    ${TENANT}
+    Click Link    Instances
+    Click Link    ${IMAGE_NAME}
+    Click Link    Log
+    Wait Until Page Contains    Instance Console Log
+    ${LOGI}    Get Text     css=pre.logs
+    ${LEN}    Get Length    ${LOGI}
+    ${VALI}    Set Variable If     ${LEN} > 100    OK    NOK
+    Should Be Equal    OK    ${VALI}    Console Log not present
 test_m1_xlarge
     Open Connection    ${HOST}
     Login With Public Key    ${username}    ${ID_RSA}    ${KEYRING_PASS}
@@ -92,4 +146,17 @@ test_m1_xlarge
     ${output}    Execute Command    df -h | grep /dev/.da1
     Should Match Regexp     ${output}    ^/dev/.da1\\s+79G.*$
     Log    Reached this point despite of error
+#   LOGIN TO HORIZON AND CHECK LOGS
+    Login to OpenStack
+    Wait Until Page Contains   Instances
+    Click Element    css=h3
+    Click Link    ${TENANT}
+    Click Link    Instances
+    Click Link    ${IMAGE_NAME}
+    Click Link    Log
+    Wait Until Page Contains    Instance Console Log
+    ${LOGI}    Get Text     css=pre.logs
+    ${LEN}    Get Length    ${LOGI}
+    ${VALI}    Set Variable If     ${LEN} > 100    OK    NOK
+    Should Be Equal    OK    ${VALI}    Console Log not present
 
