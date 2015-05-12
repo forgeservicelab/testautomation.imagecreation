@@ -13,6 +13,6 @@ To run tests
  - KEYRING_PASS : Password for keyfile (Default emtpy)
  - HOST : IP address/FQDN for newly created VM
  - TENANT : Tenant name under which Instance is started (Default: Digile.Devel)
- - IMAGE__NAME : Name of the newly created Instance ( Default: image_name)
+ - IMAGE_NAME : Name of the newly created Instance ( Default: image_name)
 
 
