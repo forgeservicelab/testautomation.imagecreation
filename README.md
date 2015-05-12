@@ -4,7 +4,7 @@ To run tests
     
     pybot --variable PARAMETER:value --variable PARAMETER2:value2 testsuite.txt
 
-##Parameters:
+## Parameters:
 
  - VALID_USER : Valid username that has access to OpenStack
  - VALID_PASSWORD : Password for above user
