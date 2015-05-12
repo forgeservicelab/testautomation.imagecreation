@@ -55,6 +55,8 @@ test_m1_tiny
     ${LEN}    Get Length    ${LOGI}
     ${VALI}    Set Variable If     ${LEN} > 100    OK    NOK
     Should Be Equal    OK    ${VALI}    Console Log not present
+    Click Link    Sign Out
+    Close All Browsers
 test_m1_small
     Open Connection    ${HOST}
     Login With Public Key    ${username}    ${ID_RSA}    ${KEYRING_PASS}
@@ -81,6 +83,8 @@ test_m1_small
     ${LEN}    Get Length    ${LOGI}
     ${VALI}    Set Variable If     ${LEN} > 100    OK    NOK
     Should Be Equal    OK    ${VALI}    Console Log not present
+    Click Link    Sign Out
+    Close All Browsers
 test_m1_medium
     Open Connection    ${HOST}
     Login With Public Key    ${username}    ${ID_RSA}    ${KEYRING_PASS}
@@ -107,6 +111,8 @@ test_m1_medium
     ${LEN}    Get Length    ${LOGI}
     ${VALI}    Set Variable If     ${LEN} > 100    OK    NOK
     Should Be Equal    OK    ${VALI}    Console Log not present
+    Click Link    Sign Out
+    Close All Browsers
 test_m1_large
     Open Connection    ${HOST}
     Login With Public Key    ${username}    ${ID_RSA}    ${KEYRING_PASS}
@@ -133,6 +139,8 @@ test_m1_large
     ${LEN}    Get Length    ${LOGI}
     ${VALI}    Set Variable If     ${LEN} > 100    OK    NOK
     Should Be Equal    OK    ${VALI}    Console Log not present
+    Click Link    Sign Out
+    Close All Browsers
 test_m1_xlarge
     Open Connection    ${HOST}
     Login With Public Key    ${username}    ${ID_RSA}    ${KEYRING_PASS}
@@ -159,4 +167,6 @@ test_m1_xlarge
     ${LEN}    Get Length    ${LOGI}
     ${VALI}    Set Variable If     ${LEN} > 100    OK    NOK
     Should Be Equal    OK    ${VALI}    Console Log not present
+    Click Link    Sign Out
+    Close All Browsers
 
